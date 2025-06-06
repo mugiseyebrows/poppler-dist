@@ -4,6 +4,8 @@ jobs:
   main:
     runs-on: windows-latest
     steps:
+    - name: checkout
+      uses: actions/checkout@v4
     - name: setup-msys2
       uses: msys2/setup-msys2@v2
       with:

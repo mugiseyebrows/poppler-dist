@@ -1,6 +1,7 @@
 def main
     use(conda)
     add_path(C:\msys64\ucrt64\bin)
+    github_checkout()
     where python
     python -m pip install mugideploy
     where mugideploy
