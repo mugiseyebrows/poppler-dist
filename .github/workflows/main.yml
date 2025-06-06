@@ -6,4 +6,7 @@ jobs:
     steps:
     - name: main
       shell: cmd
-      run: where python
+      run: |
+        set PATH=C:\Miniconda;C:\Miniconda\Scripts;C:\msys64\ucrt64\bin;%PATH%
+        where python
+        python -m pip install mugideploy

@@ -1,11 +1,13 @@
 def main
-    #add_path(C:\msys64\ucrt64\bin)
-    #python -m pip install mugideploy
+    use(conda)
+    add_path(C:\msys64\ucrt64\bin)
+    where python
+    python -m pip install mugideploy
     #github_setup_msys2(mingw-w64-ucrt-x86_64-poppler, :msystem=UCRT64, :update=true)
     #pdftoppm.exe -v
     #mugideploy collect --name poppler --version 24.07.0 --bin pdfattach.exe pdfdetach.exe pdffonts.exe pdfimages.exe pdfinfo.exe pdfseparate.exe pdfsig.exe pdftocairo.exe pdftohtml.exe pdftoppm.exe pdftops.exe pdftotext.exe pdfunite.exe --unix-dirs --data C:\msys64\ucrt64\share\poppler --zip
     #github_upload(poppler-24.07.0-win64)
     #github_release(poppler-24.07.0-win64.zip)
-    where python
+    
 
 github-workflow 1
