@@ -9,3 +9,5 @@ out, err = proc.communicate()
 
 if version not in out.decode('cp866') and version not in err.decode('cp866'):
     raise ValueError("different version")
+
+print("correct version")
