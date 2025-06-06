@@ -4,9 +4,30 @@ jobs:
   main:
     runs-on: windows-latest
     steps:
+    - name: setup-msys2
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: UCRT64
+        release: false
+        install: mingw-w64-ucrt-x86_64-poppler
+        update: true
     - name: main
       shell: cmd
       run: |
         set PATH=C:\Miniconda;C:\Miniconda\Scripts;C:\msys64\ucrt64\bin;%PATH%
         where python
         python -m pip install mugideploy
+        where mugideploy
+        pdftoppm.exe -v
+        python D:\dev\poppler-dist\assert-version.py 25.05.0 pdftoppm -v
+        mugideploy collect --name poppler --version 25.05.0 --bin pdfattach.exe pdfdetach.exe pdffonts.exe pdfimages.exe pdfinfo.exe pdfseparate.exe pdfsig.exe pdftocairo.exe pdftohtml.exe pdftoppm.exe pdftops.exe pdftotext.exe pdfunite.exe --unix-dirs --data C:\msys64\ucrt64\share\poppler --zip
+    - name: upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: poppler-25.05.0-win64
+        path: poppler-25.05.0-win64
+    - name: release
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: poppler-25.05.0-win64.zip
